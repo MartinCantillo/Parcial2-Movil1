@@ -5,7 +5,7 @@ import 'package:geolocator/geolocator.dart';
 
 // ignore: constant_identifier_names
 const MAPBOX_ACCESS_TOKEN =
-    'pk.eyJ1IjoicGl0bWFjIiwiYSI6ImNsY3BpeWxuczJhOTEzbnBlaW5vcnNwNzMifQ.ncTzM4bW-jpq-hUFutnR1g';
+    'pk.eyJ1IjoiZGFuaWVsanIxMSIsImEiOiJjbG5lcXhiYTgwZThhMmpvNGtlNG1vcTdxIn0.xLcplNW4L11ON3Ekf3wpaQ';
 
 class MapScreen extends StatefulWidget {
   const MapScreen({super.key});
@@ -48,14 +48,14 @@ class _MapScreenState extends State<MapScreen> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const Text('Mapa'),
-        backgroundColor: Colors.blueAccent,
+        title: const Text('STORES MAP'),
+        backgroundColor: Colors.black87,
       ),
       body: myPosition == null
           ? const CircularProgressIndicator()
           : FlutterMap(
               options: MapOptions(
-                  center: myPosition, minZoom: 5, maxZoom: 25, zoom: 18),
+                  center: myPosition, minZoom: 5, maxZoom: 15, zoom: 15),
               nonRotatedChildren: [
                 TileLayer(
                   urlTemplate:
@@ -85,4 +85,24 @@ class _MapScreenState extends State<MapScreen> {
             ),
     );
   }
+}
+
+class Stores {
+  final String nombre;
+  final double latitud;
+  final double longitud;
+  final String categoria;
+  final List<String> resenas;
+  final String promociones;
+  final String horarios;
+
+  Stores({
+    required this.nombre,
+    required this.latitud,
+    required this.longitud,
+    required this.categoria,
+    required this.resenas,
+    required this.promociones,
+    required this.horarios,
+  });
 }
