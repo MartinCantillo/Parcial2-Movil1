@@ -16,6 +16,7 @@ class MapScreen extends StatefulWidget {
 
 class _MapScreenState extends State<MapScreen> {
   LatLng? myPosition;
+  String? selectedCategory; // Categoría seleccionada
 
   Future<Position> determinePosition() async {
     LocationPermission permission;
@@ -48,42 +49,106 @@ class _MapScreenState extends State<MapScreen> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const Text('STORES MAP'),
+        title: const Text('STORE MAP'),
         backgroundColor: Colors.black87,
       ),
       body: myPosition == null
           ? const CircularProgressIndicator()
-          : FlutterMap(
-              options: MapOptions(
-                  center: myPosition, minZoom: 5, maxZoom: 15, zoom: 15),
-              nonRotatedChildren: [
-                TileLayer(
-                  urlTemplate:
-                      'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}',
-                  additionalOptions: const {
-                    'accessToken': MAPBOX_ACCESS_TOKEN,
-                    'id': 'mapbox/streets-v12'
-                  },
+          : Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: DropdownButtonFormField<String>(
+                    value: selectedCategory,
+                    onChanged: (newValue) {
+                      setState(() {
+                        selectedCategory = newValue;
+                      });
+                    },
+                    items: ['All Categories', ...getUniqueCategories(tiendas)]
+                        .map((categoria) {
+                      return DropdownMenuItem(
+                        value: categoria,
+                        child: Text(categoria),
+                      );
+                    }).toList(),
+                    decoration: InputDecoration(
+                      labelText: 'Seek ',
+                    ),
+                  ),
                 ),
-                MarkerLayer(
-                  markers: [
-                    Marker(
-                      point: myPosition!,
-                      builder: (context) {
-                        return Container(
-                          child: const Icon(
-                            Icons.person_pin,
-                            color: Colors.blueAccent,
-                            size: 40,
+                Expanded(
+                  child: FlutterMap(
+                    options: MapOptions(
+                      center: myPosition!,
+                      minZoom: 5,
+                      maxZoom: 35,
+                      zoom: 15,
+                    ),
+                    nonRotatedChildren: [
+                      TileLayer(
+                        urlTemplate:
+                            'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}',
+                        additionalOptions: const {
+                          'accessToken': MAPBOX_ACCESS_TOKEN,
+                          'id': 'mapbox/streets-v12'
+                        },
+                      ),
+                      MarkerLayer(
+                        markers: [
+                          Marker(
+                            point: myPosition!,
+                            builder: (context) {
+                              return Container(
+                                child: const Icon(
+                                  Icons.person_pin,
+                                  color: Colors.black87,
+                                  size: 40,
+                                ),
+                              );
+                            },
                           ),
-                        );
-                      },
-                    )
-                  ],
-                )
+                          // Filtrar y agregar marcadores para las tiendas
+                          ...getFilteredStores(tiendas, selectedCategory).map((tienda) {
+                            return Marker(
+                              point: LatLng(tienda.latitud, tienda.longitud),
+                              builder: (context) {
+                                return GestureDetector(
+                                  onTap: () {
+                                    // Mostrar información de la tienda cuando se hace clic en el marcador
+                                    // Puedes abrir un modal o una nueva pantalla para mostrar detalles.
+                                  },
+                                  child: Icon(
+                                    Icons.store_rounded,
+                                    color: Colors.black87,
+                                    size: 40,
+                                  ),
+                                );
+                              },
+                            );
+                          }).toList(),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
               ],
             ),
     );
+  }
+
+  // Función para obtener las categorías únicas de las tiendas
+  List<String> getUniqueCategories(List<Stores> tiendas) {
+    return tiendas.map((tienda) => tienda.categoria).toSet().toList();
+  }
+
+  // Función para filtrar tiendas por categoría
+  List<Stores> getFilteredStores(List<Stores> tiendas, String? selectedCategory) {
+    if (selectedCategory == 'All Categories' || selectedCategory == null) {
+      return tiendas;
+    } else {
+      return tiendas.where((tienda) => tienda.categoria == selectedCategory).toList();
+    }
   }
 }
 
@@ -106,3 +171,25 @@ class Stores {
     required this.horarios,
   });
 }
+
+final List<Stores> tiendas = [
+  Stores(
+    nombre: 'Tienda A',
+    latitud: 10.907399090308166,
+    longitud: -74.80040072594659,
+    categoria: 'Moda',
+    resenas: ['Buena tienda', 'Gran servicio'],
+    promociones: 'Descuento del 20%',
+    horarios: 'Lun-Vie: 9 AM - 7 PM',
+  ),
+  Stores(
+    nombre: 'Tienda B',
+    latitud: 10.990993161905982,
+    longitud: -74.78812693782318,
+    categoria: 'Futbol',
+    resenas: ['Buena tienda', 'Gran servicio'],
+    promociones: 'Descuento del 20%',
+    horarios: 'Lun-Vie: 9 AM - 7 PM',
+  ),
+  // Agregar más tiendas aquí si es necesario
+];
