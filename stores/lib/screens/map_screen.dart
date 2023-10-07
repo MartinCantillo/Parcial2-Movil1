@@ -51,7 +51,9 @@ class _MapScreenState extends State<MapScreen> {
         centerTitle: true,
         title: const Text('STORE MAP'),
         backgroundColor: Colors.black87,
+        
       ),
+      drawer: DrawerButtonIcon(),
       body: myPosition == null
           ? const CircularProgressIndicator()
           : Column(
