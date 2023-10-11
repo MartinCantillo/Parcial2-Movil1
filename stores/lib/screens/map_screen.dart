@@ -117,8 +117,6 @@ class _MapScreenState extends State<MapScreen> {
                               builder: (context) {
                                 return GestureDetector(
                                   onTap: () {
-                                    // Mostrar información de la tienda cuando se hace clic en el marcador
-                                    // Puedes abrir un modal o una nueva pantalla para mostrar detalles.
                                   },
                                   child: Icon(
                                     Icons.store_rounded,
@@ -193,5 +191,4 @@ final List<Stores> tiendas = [
     promociones: 'Descuento del 20%',
     horarios: 'Lun-Vie: 9 AM - 7 PM',
   ),
-  // Agregar más tiendas aquí si es necesario
 ];
