@@ -141,15 +141,24 @@ print(animationController);
                           // Filtrar y agregar marcadores para las tiendas
                           ...getFilteredStores(tiendas, selectedCategory).map((tienda) {
                             return Marker(
+                              height: 50,
+                            width: 50,
                               point: LatLng(tienda.latitud, tienda.longitud),
                               builder: (context) {
                                 return GestureDetector(
                                   onTap: () {
+                                    print("haz tocado");
                                   },
-                                  child: Icon(
-                                    Icons.store_rounded,
-                                    color: Colors.black87,
-                                    size: 40,
+                                  child: AnimatedBuilder(
+                                     animation: sizeAnimation,
+                                      
+                                    builder: (BuildContext context, Widget? child) {
+                                       print("animationController.value: ${animationController.value}");
+                                      return  Center(
+                                        child: Image.asset("assets/images/tienda.png" ,width: sizeAnimation.value,
+                                                                           height: sizeAnimation.value,),
+                                      );
+                                    },
                                   ),
                                 );
                               },
