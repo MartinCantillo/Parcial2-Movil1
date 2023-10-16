@@ -67,13 +67,8 @@ print(animationController);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: const Text('STORE MAP'),
-        backgroundColor: Colors.black87,
-        
-      ),
-      drawer: DrawerButtonIcon(),
+     
+    //  drawer: DrawerButtonIcon(),
       body: myPosition == null
           ? const CircularProgressIndicator()
           : Column(
@@ -81,23 +76,33 @@ print(animationController);
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: DropdownButtonFormField<String>(
-                    value: selectedCategory,
-                    onChanged: (newValue) {
-                      setState(() {
-                        selectedCategory = newValue;
-                      });
-                    },
-                    items: ['All Categories', ...getUniqueCategories(tiendas)]
-                        .map((categoria) {
-                      return DropdownMenuItem(
-                        value: categoria,
-                        child: Text(categoria),
-                      );
-                    }).toList(),
-                    decoration: InputDecoration(
-                      labelText: 'Seek ',
-                    ),
-                  ),
+  value: selectedCategory,
+  onChanged: (newValue) {
+    setState(() {
+      selectedCategory = newValue;
+    });
+  },
+  items: ['All Categories', ...getUniqueCategories(tiendas)].map((categoria) {
+    return DropdownMenuItem(
+      value: categoria,
+      child: Text(categoria),
+    );
+  }).toList(),
+  decoration: InputDecoration(
+    //labelText: 'Select a Category',
+    border: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(10.0),
+    ),
+    filled: true,
+    fillColor: Colors.grey[200],
+  ),
+  style: TextStyle(
+    color: Colors.blue,
+    fontSize: 16.0,
+  ),
+  icon: Icon(Icons.arrow_drop_down),
+)
+
                 ),
                 Expanded(
                   child: FlutterMap(
