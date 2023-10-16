@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:stores/screens/mapDetails.dart';
 
 // ignore: constant_identifier_names
 const MAPBOX_ACCESS_TOKEN =
@@ -90,17 +91,15 @@ print(animationController);
   }).toList(),
   decoration: InputDecoration(
     //labelText: 'Select a Category',
-    border: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(10.0),
-    ),
-    filled: true,
-    fillColor: Colors.grey[200],
+    
+    //filled: true,
+    //fillColor: Colors.,
   ),
-  style: TextStyle(
+  style: const TextStyle(
     color: Colors.blue,
     fontSize: 16.0,
   ),
-  icon: Icon(Icons.arrow_drop_down),
+  //icon: Icon(Icons.arrow_drop_down),
 )
 
                 ),
@@ -151,14 +150,18 @@ print(animationController);
                               point: LatLng(tienda.latitud, tienda.longitud),
                               builder: (context) {
                                 return GestureDetector(
-                                  onTap: () {
-                                    print("haz tocado");
-                                  },
+                                onTap: () {
+  Navigator.of(context).push(
+    MaterialPageRoute(
+      builder: (context) => MapItemDetails(selectedStore: tienda),
+    ),
+  );
+},
                                   child: AnimatedBuilder(
                                      animation: sizeAnimation,
                                       
                                     builder: (BuildContext context, Widget? child) {
-                                       print("animationController.value: ${animationController.value}");
+                                   //    print("animationController.value: ${animationController.value}");
                                       return  Center(
                                         child: Image.asset("assets/images/tienda.png" ,width: sizeAnimation.value,
                                                                            height: sizeAnimation.value,),
