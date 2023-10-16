@@ -93,7 +93,7 @@ class _MapScreenState extends State<MapScreen> {
                             'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}',
                         additionalOptions: const {
                           'accessToken': MAPBOX_ACCESS_TOKEN,
-                          'id': 'mapbox/streets-v12'
+                          'id': 'mapbox/dark-v10'
                         },
                       ),
                       MarkerLayer(
@@ -101,13 +101,8 @@ class _MapScreenState extends State<MapScreen> {
                           Marker(
                             point: myPosition!,
                             builder: (context) {
-                              return Container(
-                                child: const Icon(
-                                  Icons.person_pin,
-                                  color: Colors.black87,
-                                  size: 40,
-                                ),
-                              );
+                              return  Image.asset("assets/images/marker.png");
+                            
                             },
                           ),
                           // Filtrar y agregar marcadores para las tiendas
