@@ -14,7 +14,10 @@ class MapScreen extends StatefulWidget {
   State<MapScreen> createState() => _MapScreenState();
 }
 
-class _MapScreenState extends State<MapScreen> {
+class _MapScreenState extends State<MapScreen>  with TickerProviderStateMixin {
+  //animations marker
+   late AnimationController animationController;
+  late Animation <double> sizeAnimation;
   LatLng? myPosition;
   String? selectedCategory; // Categoría seleccionada
 
@@ -40,8 +43,25 @@ class _MapScreenState extends State<MapScreen> {
 
   @override
   void initState() {
+    //initialization
+    animationController = AnimationController(vsync: this , duration: const Duration(milliseconds: 1000));
+ sizeAnimation = Tween<double>(
+  begin: 30.0, 
+  end: 60.0,  
+).animate(animationController);
+animationController.repeat(reverse: true);
+print(animationController);
+//animationController.forward();
     getCurrentLocation();
     super.initState();
+  }
+
+  @override
+  void dispose(){
+    animationController.dispose();
+    super.dispose();
+  
+
   }
 
   @override
@@ -99,9 +119,22 @@ class _MapScreenState extends State<MapScreen> {
                       MarkerLayer(
                         markers: [
                           Marker(
+                            height: 80,
+                            width: 80,
                             point: myPosition!,
-                            builder: (context) {
-                              return  Image.asset("assets/images/marker.png");
+                            builder: ( BuildContext context ) {
+                              return  AnimatedBuilder(
+                                animation: sizeAnimation,
+                                
+                                builder: (BuildContext context, Widget? child) {
+                                // print("animationController.value: ${animationController.value}");
+                                  return  Center(
+                                    child: Image.asset("assets/images/marker2.png" ,width: sizeAnimation.value,
+                                     height: sizeAnimation.value,),
+                                  ); 
+                                },
+                              );
+                              
                             
                             },
                           ),
