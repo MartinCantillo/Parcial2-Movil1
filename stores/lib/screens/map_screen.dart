@@ -308,76 +308,103 @@ class _MapItemDetails extends StatelessWidget {
       padding: const EdgeInsets.all(15.0),
       child: Card(
         color: const Color.fromRGBO(255, 255, 255, 1),
-        child: Row(
+        child: Column(
           children: [
-            Expanded(
-              child: Container(
-                  width: 60.0, // Ancho deseado
-                  height: 60.0,
-                  alignment: Alignment.centerLeft,
-                  padding: EdgeInsets.only(left: 20.0), // Margen izquierdo
-                  child: Image.asset(
-                    store.imagen,
-                  )),
-            ),
-            Expanded(
-              child: Container(
-                //padding:EdgeInsets.only(left: 00.0), // Ajusta el margen izquierdo
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  crossAxisAlignment: CrossAxisAlignment.start, // Alinea el texto a la izquierda
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top:20.0),
-                      child: Text(
-                        'Nombre: ${store.nombre}',
-                        style: TextStyle(
-                          fontSize: 11.0, // Tamaño de fuente
-                          fontWeight: FontWeight.bold, // Peso de la fuente
-                          color: Colors.black, // Color del texto
+            Row(
+              children: [
+                Expanded(
+                  child: Container(
+                      width: 60.0,
+                      height: 60.0,
+                      margin: EdgeInsets.only(top: 20.0),
+                      alignment: Alignment.centerLeft,
+                      padding: EdgeInsets.only(left: 20.0), // Margen izquierdo
+                      child: Image.asset(
+                        store.imagen,
+                      )),
+                ),
+                Expanded(
+                  child: Container(
+                    //padding:EdgeInsets.only(left: 00.0), // Ajusta el margen izquierdo
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      crossAxisAlignment: CrossAxisAlignment
+                          .start, // Alinea el texto a la izquierda
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(top: 10.0),
+                          child: Text(
+                            store.nombre,
+                            style: TextStyle(
+                              fontSize: 12.0, // Tamaño de fuente
+                              fontWeight: FontWeight.bold, // Peso de la fuente
+                              color: Colors.black // Color del texto
+                            ),
+                          ),
                         ),
-                      ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 7.0),
+                          child: Text(
+                            
+                            'Reseñas: ${store.resenas.join(", ")}',
+                            style: TextStyle(
+                              fontSize: 11.0, // Tamaño de fuente
+                              fontWeight: FontWeight.bold, // Peso de la fuente
+                              color: Colors.grey, // Color del texto
+                            ),
+                          ),
+                        ),
+                        Text(
+                          'Promociones: ${store.promociones}',
+                          style: TextStyle(
+                            fontSize: 11.0, // Tamaño de fuente
+                            fontWeight: FontWeight.bold, // Peso de la fuente
+                            color: Colors.grey, // Color del texto
+                          ),
+                        ),
+                        Text(
+                          'Horarios: ${store.horarios}',
+                          style: TextStyle(
+                            fontSize: 11.0, //Tamaño de fuente
+                            fontWeight: FontWeight.bold, // Peso de la fuente
+                            color: Colors.grey, // Color del texto
+                          ),
+                        ),
+                      ],
                     ),
-               
-                    Text(
-                      'Reseñas: ${store.resenas.join(", ")}',
-                      style: TextStyle(
-                           fontSize: 11.0, // Tamaño de fuente
-                        fontWeight: FontWeight.bold, // Peso de la fuente
-                        color: Colors.black, // Color del texto
-                      ),
-                    ),
-                    Text(
-                      'Promociones: ${store.promociones}',
-                      style: TextStyle(
-                        fontSize: 11.0, // Tamaño de fuente
-                        fontWeight: FontWeight.bold, // Peso de la fuente
-                        color: Colors.black, // Color del texto
-                      ),
-                    ),
-                    Text(
-                      'Horarios: ${store.horarios}',
-                      style: TextStyle(
-                        fontSize: 11.0, //Tamaño de fuente
-                        fontWeight: FontWeight.bold, // Peso de la fuente
-                        color: Colors.black, // Color del texto
-                      ),
-                    ),
-                  ],
+                  ),
+                ),
+              ],
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 20.0),
+              child: ElevatedButton.icon(
+                onPressed: () {},
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.blue, // Color de fondo del botón
+                  shape: RoundedRectangleBorder(
+                    borderRadius:
+                        BorderRadius.circular(20.0), // Bordes redondeados
+                  ),
+                  padding: EdgeInsets.symmetric(
+                      horizontal: 20.0), // Ajusta el espacio horizontal
+                ),
+                icon: Icon(
+                  Icons.directions, // Ícono de dirección
+                  color: Colors.white, // Color del ícono
+                ),
+                label: Text(
+                  'Como llegar', // Texto del botón
+                  style: TextStyle(
+                    color: Colors.white, // Color del texto
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
-              
-            ),
-            
-  
-
+            )
           ],
-          
         ),
-        
-        
       ),
-      
     );
   }
 }
