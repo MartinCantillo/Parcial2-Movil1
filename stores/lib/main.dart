@@ -14,7 +14,11 @@ class MyApp extends StatelessWidget {
       title: 'Material App',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(useMaterial3: true, brightness: Brightness.dark),
-      home:  LoginPage(),
+      initialRoute: LoginPage.nombre,
+      routes: {
+        LoginPage.nombre:(context) => LoginPage(),
+        MapScreen.nombre:(context) =>   MapScreen(), 
+      },
     );
   }
 }

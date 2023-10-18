@@ -2,17 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:stores/components/MyButton.dart';
 import 'package:stores/components/MyTextField.dart';
 import 'package:stores/components/SquareTile.dart';
+import 'package:stores/screens/map_screen.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
+  static const String nombre= 'login';
 
   // text editing controllers
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
 
   // sign user in method
-  void signUserIn() {
-    print("undiste");
+  void signUserIn(BuildContext context) {
+    Navigator.of(context).pushNamed(MapScreen.nombre);
   }
 
   @override
@@ -82,7 +84,9 @@ class LoginPage extends StatelessWidget {
 
               // sign in button
               MyButton(
-                onTap: signUserIn,
+                onTap: () {
+                  signUserIn(context); // Pasa el contexto
+                },
               ),
 
               const SizedBox(height: 20),

@@ -8,7 +8,8 @@ const MAPBOX_ACCESS_TOKEN =
     'pk.eyJ1IjoiZGFuaWVsanIxMSIsImEiOiJjbG5lcXhiYTgwZThhMmpvNGtlNG1vcTdxIn0.xLcplNW4L11ON3Ekf3wpaQ';
 
 class MapScreen extends StatefulWidget {
-  const MapScreen({super.key});
+  static const String nombre = 'mapa';
+   MapScreen({super.key});
 
   @override
   State<MapScreen> createState() => _MapScreenState();
