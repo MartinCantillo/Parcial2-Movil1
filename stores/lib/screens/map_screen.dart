@@ -292,6 +292,26 @@ final List<Stores> tiendas = [
     horarios: 'Lun-Vie: 8 AM - 7 PM',
     imagen: "assets/images/Optica.jpeg",
   ),
+  Stores(
+    nombre: 'Visual Click Colombia',
+    latitud: 10.989580120190793,
+    longitud: -74.7895565241333,
+    categoria: 'Optica',
+    resenas: ['Buena tienda', 'Excelente servicio'],
+    promociones: 'Descuento del 20%',
+    horarios: 'Lun-Vie: 8 AM - 7 PM',
+    imagen: "assets/images/Optica.jpeg",
+  ),
+  Stores(
+    nombre: 'Americanino',
+    latitud: 10.99068020751638,
+    longitud: -74.7885275201528,
+    categoria: 'Moda',
+    resenas: ['Buena tienda', 'Excelentes precios'],
+    promociones: 'Descuento del %15',
+    horarios: 'Lun-Vie: 8 AM - 7 PM',
+    imagen: "assets/images/americanino.png",
+  ),
 ];
 
 class _MapItemDetails extends StatelessWidget {
