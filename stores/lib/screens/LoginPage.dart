@@ -16,8 +16,8 @@ class LoginPage extends StatelessWidget {
 
   // sign user in method
   void signUserIn(BuildContext context) {
-    prefs.usuario=usernameController as String;
-    prefs.contrasena=passwordController as String;
+    prefs.usuario=usernameController.text;
+    prefs.contrasena=passwordController.text;
     Navigator.of(context).pushNamed(MapScreen.nombre);
   }
 
