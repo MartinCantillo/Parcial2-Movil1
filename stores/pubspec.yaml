@@ -34,6 +34,7 @@ dependencies:
   flutter_map: 
   geolocator: 
   latlong2: 
+  shared_preferences: 
 
 dev_dependencies:
   flutter_test:
