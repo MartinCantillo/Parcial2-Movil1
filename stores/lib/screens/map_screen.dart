@@ -318,7 +318,7 @@ final List<Stores> tiendas = [
     longitud: -74.78979533747044,
     categoria: 'Supermercado',
     resenas: ['Buena tienda', 'Excelentes precios'],
-    promociones: 'Combo gaseosa mas frito 3550COP',
+    promociones: 'Combo gaseosa mas frito ',
     horarios: 'Lun-Vie: 7 AM - 9 PM',
     imagen: "assets/images/ara.png",
   ),
@@ -435,8 +435,8 @@ class _MapItemDetails extends StatelessWidget {
                     horizontal: 20.0), // Ajusta el espacio horizontal
               ),
               icon: Icon(
-                Icons.directions, // Ícono de dirección
-                color: Colors.white, // Color del ícono
+                Icons.directions,
+                color: Colors.white, 
               ),
               label: Text(
                 'Como llegar', // Texto del botón

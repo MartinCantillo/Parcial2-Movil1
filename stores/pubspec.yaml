@@ -34,7 +34,8 @@ dependencies:
   flutter_map: 
   geolocator: 
   latlong2: 
-  shared_preferences: 
+  shared_preferences:
+  icon_forest: 
 
 dev_dependencies:
   flutter_test:
@@ -58,6 +59,8 @@ flutter:
     - assets/images/americanino.png
     - assets/images/ara.png
     - assets/images/Wasabi.jpeg
+    - assets/images/google.png
+    - assets/images/apple.png
 
 
 

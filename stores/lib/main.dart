@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:stores/screens/LoginPage.dart';
 import 'package:stores/screens/map_screen.dart';
 
 
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
       title: 'Material App',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(useMaterial3: true, brightness: Brightness.dark),
-      home:  MapScreen(),
+      home:  LoginPage(),
     );
   }
 }
