@@ -88,7 +88,7 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
           : Column(
               children: [
                 Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 20.0),
                     child: DropdownButtonFormField<String>(
                       value: selectedCategory,
                       onChanged: (newValue) {
@@ -113,7 +113,7 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
                         color: Colors.blue,
                         fontSize: 16.0,
                       ),
-                      //icon: Icon(Icons.arrow_drop_down),
+                      // icon: Icon(Icons.arrow_drop_down),
                     )),
                 Expanded(
                   child: Stack(
@@ -332,20 +332,20 @@ class _MapItemDetails extends StatelessWidget {
                           .start, // Alinea el texto a la izquierda
                       children: [
                         Padding(
-                          padding: const EdgeInsets.only(top: 10.0),
+                          padding: const EdgeInsets.only(top: 8.0),
                           child: Text(
                             store.nombre,
                             style: TextStyle(
-                              fontSize: 12.0, // Tamaño de fuente
-                              fontWeight: FontWeight.bold, // Peso de la fuente
-                              color: Colors.black // Color del texto
-                            ),
+                                fontSize: 15.0, // Tamaño de fuente
+                                fontWeight:
+                                    FontWeight.bold, // Peso de la fuente
+                                color: Colors.black // Color del texto
+                                ),
                           ),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 7.0),
                           child: Text(
-                            
                             'Reseñas: ${store.resenas.join(", ")}',
                             style: TextStyle(
                               fontSize: 11.0, // Tamaño de fuente
@@ -376,32 +376,62 @@ class _MapItemDetails extends StatelessWidget {
                 ),
               ],
             ),
-            Container(
-              margin: EdgeInsets.only(top: 20.0),
-              child: ElevatedButton.icon(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  primary: Colors.blue, // Color de fondo del botón
-                  shape: RoundedRectangleBorder(
-                    borderRadius:
-                        BorderRadius.circular(20.0), // Bordes redondeados
-                  ),
-                  padding: EdgeInsets.symmetric(
-                      horizontal: 20.0), // Ajusta el espacio horizontal
+        Column(
+  children: [
+    Center(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center, // Alinea los botones al centro
+        children: [
+          Container(
+            margin: EdgeInsets.only(top: 10.0, right: 10.0), // Aplicar margen a la derecha
+            child: ElevatedButton.icon(
+              onPressed: () {},
+              style: ElevatedButton.styleFrom(
+                primary: Colors.blue, // Color de fondo del botón
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20.0), // Bordes redondeados
                 ),
-                icon: Icon(
-                  Icons.directions, // Ícono de dirección
-                  color: Colors.white, // Color del ícono
-                ),
-                label: Text(
-                  'Como llegar', // Texto del botón
-                  style: TextStyle(
-                    color: Colors.white, // Color del texto
-                    fontWeight: FontWeight.bold,
-                  ),
+                padding: EdgeInsets.symmetric(
+                    horizontal: 20.0), // Ajusta el espacio horizontal
+              ),
+              icon: Icon(
+                Icons.directions, // Ícono de dirección
+                color: Colors.white, // Color del ícono
+              ),
+              label: Text(
+                'Como llegar', // Texto del botón
+                style: TextStyle(
+                  color: Colors.white, // Color del texto
+                  fontWeight: FontWeight.bold,
                 ),
               ),
-            )
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.only(top: 5.0),
+            child: MaterialButton(
+              onPressed: () {
+                // Función a ejecutar cuando se presione el botón de notificación
+              },
+              color: Colors.white, // Color de fondo del botón
+              shape: CircleBorder(), // Forma del botón (circular)
+              child: Padding(
+                padding: const EdgeInsets.all(12.0), // Espacio entre el ícono y el borde del botón
+                child: Icon(
+                  Icons.navigation, // Icono de navegación
+                  size: 24, // Tamaño del icono
+                  color: Colors.blue, // Color del icono
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    ),
+  ],
+),
+
+
           ],
         ),
       ),
