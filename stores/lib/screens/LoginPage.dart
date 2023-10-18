@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:stores/components/MyButton.dart';
 import 'package:stores/components/MyTextField.dart';
 import 'package:stores/components/SquareTile.dart';
+import 'package:stores/localstorage/Sharepreference.dart';
 import 'package:stores/screens/map_screen.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
   static const String nombre= 'login';
+  final prefs = PrefernciaUsuario();
 
   // text editing controllers
   final usernameController = TextEditingController();
@@ -14,11 +16,14 @@ class LoginPage extends StatelessWidget {
 
   // sign user in method
   void signUserIn(BuildContext context) {
+    prefs.usuario=usernameController as String;
+    prefs.contrasena=passwordController as String;
     Navigator.of(context).pushNamed(MapScreen.nombre);
   }
 
   @override
   Widget build(BuildContext context) {
+     prefs.ultimapagina = LoginPage.nombre;
     return Scaffold(
       backgroundColor: Colors.grey[300],
       body: SafeArea(
