@@ -143,7 +143,8 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
                                 builder: (BuildContext context) {
                                   return AnimatedBuilder(
                                     animation: sizeAnimation,
-                                    builder: (BuildContext context, Widget? child) {
+                                    builder:
+                                        (BuildContext context, Widget? child) {
                                       // print("animationController.value: ${animationController.value}");
                                       return Center(
                                         child: Image.asset(
@@ -162,7 +163,8 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
                                 return Marker(
                                   height: 50,
                                   width: 50,
-                                  point: LatLng(tienda.latitud, tienda.longitud),
+                                  point:
+                                      LatLng(tienda.latitud, tienda.longitud),
                                   builder: (context) {
                                     return GestureDetector(
                                       onTap: () {
@@ -175,8 +177,8 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
                                       },
                                       child: AnimatedBuilder(
                                         animation: sizeAnimation,
-                                        builder:
-                                            (BuildContext context, Widget? child) {
+                                        builder: (BuildContext context,
+                                            Widget? child) {
                                           //    print("animationController.value: ${animationController.value}");
                                           return Center(
                                             child: Image.asset(
@@ -206,7 +208,8 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
                             physics: const NeverScrollableScrollPhysics(),
                             itemCount: 2,
                             itemBuilder: (context, index) {
-                              return const _MapItemDetails();
+                              return _MapItemDetails(
+                                  selectedStoreName: selectedStoreName);
                             },
                           ),
                         ),
@@ -244,6 +247,7 @@ class Stores {
   final List<String> resenas;
   final String promociones;
   final String horarios;
+  final String imagen;
 
   Stores({
     required this.nombre,
@@ -253,46 +257,127 @@ class Stores {
     required this.resenas,
     required this.promociones,
     required this.horarios,
+    required this.imagen,
   });
 }
 
 final List<Stores> tiendas = [
   Stores(
-    nombre: 'Tienda A',
+    nombre: 'Smartfit',
     latitud: 10.907399090308166,
     longitud: -74.80040072594659,
     categoria: 'Moda',
     resenas: ['Buena tienda', 'Gran servicio'],
     promociones: 'Descuento del 20%',
     horarios: 'Lun-Vie: 9 AM - 7 PM',
+    imagen: "assets/images/smartfit.png",
   ),
   Stores(
-    nombre: 'Tienda B',
+    nombre: 'Tierra Santa',
     latitud: 10.990993161905982,
     longitud: -74.78812693782318,
     categoria: 'Futbol',
     resenas: ['Buena tienda', 'Gran servicio'],
     promociones: 'Descuento del 20%',
     horarios: 'Lun-Vie: 9 AM - 7 PM',
+    imagen: "assets/images/tierrasanta.png",
   ),
 ];
 
 class _MapItemDetails extends StatelessWidget {
-  const _MapItemDetails({super.key});
+  final String selectedStoreName;
 
+  _MapItemDetails({required this.selectedStoreName});
   @override
   Widget build(BuildContext context) {
+    // Busca la tienda correspondiente en la lista
+    final store =
+        tiendas.firstWhere((store) => store.nombre == selectedStoreName,
+            orElse: () => Stores(
+                  nombre: '',
+                  latitud: 0.0,
+                  longitud: 0.0,
+                  categoria: '',
+                  resenas: [],
+                  promociones: '',
+                  horarios: '',
+                  imagen: "",
+                ));
+
     return Padding(
       padding: const EdgeInsets.all(15.0),
       child: Card(
-        color: Colors.white,
+        color: const Color.fromRGBO(255, 255, 255, 1),
         child: Row(
           children: [
-            Expanded(child: Image.asset("assets/images/smartfit.png")
-            )
+            Expanded(
+              child: Container(
+                  width: 60.0, // Ancho deseado
+                  height: 60.0,
+                  alignment: Alignment.centerLeft,
+                  padding: EdgeInsets.only(left: 20.0), // Margen izquierdo
+                  child: Image.asset(
+                    store.imagen,
+                  )),
+            ),
+            Expanded(
+              child: Container(
+                //padding:EdgeInsets.only(left: 00.0), // Ajusta el margen izquierdo
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  crossAxisAlignment: CrossAxisAlignment.start, // Alinea el texto a la izquierda
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top:20.0),
+                      child: Text(
+                        'Nombre: ${store.nombre}',
+                        style: TextStyle(
+                          fontSize: 11.0, // Tamaño de fuente
+                          fontWeight: FontWeight.bold, // Peso de la fuente
+                          color: Colors.black, // Color del texto
+                        ),
+                      ),
+                    ),
+               
+                    Text(
+                      'Reseñas: ${store.resenas.join(", ")}',
+                      style: TextStyle(
+                           fontSize: 11.0, // Tamaño de fuente
+                        fontWeight: FontWeight.bold, // Peso de la fuente
+                        color: Colors.black, // Color del texto
+                      ),
+                    ),
+                    Text(
+                      'Promociones: ${store.promociones}',
+                      style: TextStyle(
+                        fontSize: 11.0, // Tamaño de fuente
+                        fontWeight: FontWeight.bold, // Peso de la fuente
+                        color: Colors.black, // Color del texto
+                      ),
+                    ),
+                    Text(
+                      'Horarios: ${store.horarios}',
+                      style: TextStyle(
+                        fontSize: 11.0, //Tamaño de fuente
+                        fontWeight: FontWeight.bold, // Peso de la fuente
+                        color: Colors.black, // Color del texto
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              
+            ),
+            
+  
+
           ],
+          
         ),
+        
+        
       ),
+      
     );
   }
 }
