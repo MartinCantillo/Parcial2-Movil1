@@ -288,7 +288,8 @@ class _MapItemDetails extends StatelessWidget {
         color: Colors.white,
         child: Row(
           children: [
-            Expanded(child: Image.asset("assets/images/tienda.png"))
+            Expanded(child: Image.asset("assets/images/smartfit.png")
+            )
           ],
         ),
       ),
