@@ -91,7 +91,7 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
      prefs.ultimapagina = LoginPage.nombre;
     return Scaffold(
     appBar: AppBar(
-      title: Text("Hola $prefs.usuario ", textAlign:TextAlign.center , style: TextStyle(color: Colors.white)),
+      title: Text("Bienvenido ${prefs.usuario}", textAlign:TextAlign.center , style: TextStyle(color: Colors.white)),
       backgroundColor:Colors.black,
        centerTitle: true,
     ),
@@ -109,6 +109,7 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
                         return DropdownMenuItem(
                           value: categoria,
                           child: Text(categoria),
+                          
                           
                         );
                       }).toList(),
