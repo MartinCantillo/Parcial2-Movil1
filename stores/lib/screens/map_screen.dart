@@ -20,6 +20,7 @@ class MapScreen extends StatefulWidget {
 
 class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
   final prefs = PrefernciaUsuario();
+  
   PageController _pageController = PageController();
   bool showStoreDetails = false;
   String selectedStoreName = "";
@@ -86,10 +87,16 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    
      prefs.ultimapagina = LoginPage.nombre;
     return Scaffold(
-    appBar: AppBar(),
+    appBar: AppBar(
+      title: Text("Hola $prefs.usuario ", textAlign:TextAlign.center , style: TextStyle(color: Colors.white)),
+      backgroundColor:Colors.black,
+       centerTitle: true,
+    ),
     drawer: Drawer(child: ListView(children:<Widget>[
+      
      DropdownButtonFormField<String>(
                       value: selectedCategory,
                       onChanged: (newValue) {
@@ -106,8 +113,9 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
                         );
                       }).toList(),
                           decoration: InputDecoration(
+                            labelText: "Seek",
                             filled: true,
-                            fillColor: Colors.white,
+                            fillColor: Colors.black,
 
                           //filled: true,
                           //fillColor: Colors.,
@@ -466,7 +474,7 @@ class _MapItemDetails extends StatelessWidget {
             child: ElevatedButton.icon(
               onPressed: () {},
               style: ElevatedButton.styleFrom(
-                primary: Colors.blue, // Color de fondo del botón
+                primary: Colors.black, // Color de fondo del botón
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20.0), // Bordes redondeados
                 ),
@@ -492,14 +500,14 @@ class _MapItemDetails extends StatelessWidget {
               onPressed: () {
                 // Función a ejecutar cuando se presione el botón de notificación
               },
-              color: Colors.white, // Color de fondo del botón
+              color: Colors.black, // Color de fondo del botón
               shape: CircleBorder(), // Forma del botón (circular)
               child: Padding(
                 padding: const EdgeInsets.all(12.0), // Espacio entre el ícono y el borde del botón
                 child: Icon(
-                  Icons.navigation, // Icono de navegación
+                  Icons.notifications, // Icono de navegación
                   size: 24, // Tamaño del icono
-                  color: Colors.blue, // Color del icono
+                  color: Colors.white, // Color del icono
                 ),
               ),
             ),
