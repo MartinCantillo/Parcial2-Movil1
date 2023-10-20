@@ -27,7 +27,7 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
   late AnimationController animationController;
   late Animation<double> sizeAnimation;
   LatLng? myPosition;
-  String? selectedCategory; // Categoría seleccionada
+  String? selectedCategory; // Categoría seleccionad a
 
   Future<Position> determinePosition() async {
     LocationPermission permission;
@@ -107,16 +107,18 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
                         return DropdownMenuItem(
                           value: categoria,
                           child: Text(categoria),
+                          
                         );
                       }).toList(),
-                      decoration: InputDecoration(
-                          //labelText: 'Select a Category',
+                          decoration: InputDecoration(
+                            filled: true,
+                            fillColor: Colors.white,
 
                           //filled: true,
                           //fillColor: Colors.,
-                          ),
+                          ),  
                       style: const TextStyle(
-                        color: Colors.blue,
+                        color: Color.fromARGB(255, 0, 0, 0),
                         fontSize: 16.0,
                       ),
                       // icon: Icon(Icons.arrow_drop_down),
