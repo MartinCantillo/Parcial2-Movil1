@@ -8,7 +8,6 @@ void main() async {
   
   final prefs = PrefernciaUsuario();
   await prefs.initPrefs();
-
   runApp(const MyApp());
 }
 class MyApp extends StatelessWidget {

@@ -88,6 +88,37 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
      prefs.ultimapagina = LoginPage.nombre;
     return Scaffold(
+    appBar: AppBar(),
+    drawer: Drawer(child: ListView(children:<Widget>[
+     DropdownButtonFormField<String>(
+                      value: selectedCategory,
+                      onChanged: (newValue) {
+                        setState(() {
+                          selectedCategory = newValue;
+                        });
+                      },
+                      items: ['All Categories', ...getUniqueCategories(tiendas)]
+                          .map((categoria) {
+                        return DropdownMenuItem(
+                          value: categoria,
+                          child: Text(categoria),
+                          
+                        );
+                      }).toList(),
+                          decoration: InputDecoration(
+                            filled: true,
+                            fillColor: Colors.white,
+
+                          //filled: true,
+                          //fillColor: Colors.,
+                          ),  
+                      style: const TextStyle(
+                        color:  Colors.white,
+                        fontSize: 16.0,
+                      ),
+                      // icon: Icon(Icons.arrow_drop_down),
+                    )
+    ])),
       //  drawer: DrawerButtonIcon(),
       body: myPosition == null
           ? const CircularProgressIndicator()
@@ -95,7 +126,7 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
               children: [
                 Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                    child: DropdownButtonFormField<String>(
+                   /* child: DropdownButtonFormField<String>(
                       value: selectedCategory,
                       onChanged: (newValue) {
                         setState(() {
@@ -122,7 +153,7 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
                         fontSize: 16.0,
                       ),
                       // icon: Icon(Icons.arrow_drop_down),
-                    )),
+                    ) */),
                 Expanded(
                   child: Stack(
                     children: [

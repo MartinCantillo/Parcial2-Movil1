@@ -7,7 +7,7 @@ import 'package:stores/screens/map_screen.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
-  static const String nombre= 'login';
+  static const String nombre = 'login';
   final prefs = PrefernciaUsuario();
 
   // text editing controllers
@@ -16,14 +16,14 @@ class LoginPage extends StatelessWidget {
 
   // sign user in method
   void signUserIn(BuildContext context) {
-    prefs.usuario=usernameController.text;
-    prefs.contrasena=passwordController.text;
+    prefs.usuario = usernameController.text;
+    prefs.contrasena = passwordController.text;
     Navigator.of(context).pushNamed(MapScreen.nombre);
   }
 
   @override
   Widget build(BuildContext context) {
-     prefs.ultimapagina = LoginPage.nombre;
+    prefs.ultimapagina = LoginPage.nombre;
     return Scaffold(
       backgroundColor: Colors.grey[300],
       body: SafeArea(
